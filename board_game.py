@@ -2,14 +2,29 @@ class BoardGame:
     def __init__(self):
         self.game_rounds = 0
         self.board = [
-            ["_", "_", "_"],
-            ["_", "_", "_"],
-            ["_", "_", "_"],
+            [None, None, None],
+            [None, None, None],
+            [None, None, None],
         ]
 
     def add_rounds(self):
         self.game_rounds += 1
 
+    def show_board(self):
+        print(*self.board, sep="\n")
+
+    def show_row(self, idx):
+        print(self.board[idx])
+
+    def place_counter(self, row, position, player):
+        for idx, x in enumerate(row):
+            if position == idx:
+                if row[position] is None:
+                    row[idx] = player.holder
+                    return True
+                else:
+                    print("Already on")
+                    return False
     @staticmethod
     def horizontal_checker(board_list):
         for x in board_list:
